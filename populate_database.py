@@ -1,5 +1,5 @@
 from csv import reader
-import mysql.connector as sql
+import sqlite3 as sql
 import os
 import pandas as pd
 import sys
@@ -61,27 +61,9 @@ def insertDataIntoTableForTicker(mycursor, table_name, ticker):
 
 
 def connectToMySQLUsingRootLogin():
-  """Connect to mysql using the default root login."""
-  mydb = sql.connect(
-    host="localhost",
-    user="root",
-    password="root",
-  )
+  """Connect to sqlite."""
+  mydb = sql.connect("isthisstockgood.db")
   return mydb
-
-
-def selectOrCreateDatabase(mycursor, database_name):
-  """Select the 'isthisstockgood' database or create it if it does not yet exist."""
-  mycursor.execute("SHOW DATABASES")
-  database_exists = False
-  for db in mycursor:
-    if db[0] == database_name:
-      database_exists = True
-      break
-
-  if not database_exists:
-    mycursor.execute("CREATE DATABASE " + database_name)
-  mycursor.execute("USE " + database_name)
 
 
 def createTable(table_name):
@@ -133,9 +115,7 @@ def addStocksToTableFromCSVFile(table_name, csv_filename):
 if __name__ == "__main__":
   print("Connecting to database...")
   mydb = connectToMySQLUsingRootLogin()
-  mycursor = mydb.cursor(buffered=True)
-  selectOrCreateDatabase(mycursor, 'isthisstockgood')
-  print("Creating table...")
+  mycursor = mydb.cursor()
   table_name = 'stocks'
   createTable(table_name)
   print("Adding stocks...")
