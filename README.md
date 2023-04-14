@@ -30,7 +30,7 @@ or
 python3 populate_database.py 'stocks.csv'
 ```
 
-This script will connect to mySQL using `root`/`root` as the login. It will then create a new database called `isthisstockgood` with a table called `stocks` and populate it with the Rule #1 Investing computation data for the provided stocks.
+This script will create a new sqlite database file called `isthisstockgood.db` with a table called `stocks` and populate it with the Rule #1 Investing computation data for the provided stocks.
 
 (NOTE: If using `csv/s&p.csv` then this will take some time. There's 500 of them. You may also see some 'ERROR' messages from the underlying API, but this is working as intended. These are data errors in the underlying code which are being logged.)
 
