@@ -1,5 +1,5 @@
-# Rule1-StockScreener
-Scripts to populate a MySQL database with Rule #1 screened stocks.
+# Rule1-StockScreener-sqlite
+Scripts to populate a sqlite database with Rule #1 screened stocks.
 
 ## Stocklists
 
@@ -10,11 +10,9 @@ For instance, this repository maintains a S&P 500 list in `csv/s&p.csv`.
 ## Dependencies
 
 1. Install [python](https://www.python.org/downloads/) if it's not already on your system.
-2. Install `pandas` via `python -m pip install pandas`.
-3. Install [MySQL](https://dev.mysql.com/downloads/installer/)
-4. Remember your `root` password set during the install as it will be needed by the script. The script assumes it's also `root`. If you set a separate password, then you'll need to update the code to use that password in the `connect` call.
+2. Install python dependencies via `python -m pip install -r requirement.txt`.
 
-## Populate the mySQL database
+## Populate the sqlite database
 
 You will need to do this at least once, to initially populate the database. You may also want to run it periodically (monthly, once-per-quarter, annually, etc), depending on how fresh you want the data. (Most of the data does not change more than once per quarter or even annually, so it does not need to be refreshed too often.)
 
